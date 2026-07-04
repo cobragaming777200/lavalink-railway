@@ -30,9 +30,9 @@ plugins:
 
     clients:
       - MUSIC
+      - ANDROID_VR
       - WEB
       - WEBEMBEDDED
-      - ANDROID_VR
       - TV
 
 logging:
