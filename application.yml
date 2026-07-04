@@ -15,7 +15,7 @@ lavalink:
       local: false
 
   plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.0"
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.1"
       snapshot: false
 
 plugins:
@@ -25,9 +25,9 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
-      - WEB
       - MUSIC
-      - TV
+      - ANDROID_TESTSUITE
+      - WEB
       - TVHTML5_SIMPLY
 
 logging:
