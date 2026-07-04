@@ -24,12 +24,18 @@ plugins:
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
+
+    oauth:
+      enabled: true
+
     clients:
       - MUSIC
-      - ANDROID_TESTSUITE
       - WEB
-      - TVHTML5_SIMPLY
+      - WEBEMBEDDED
+      - ANDROID_VR
+      - TV
 
 logging:
   level:
     root: INFO
+    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
