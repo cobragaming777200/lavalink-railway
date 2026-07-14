@@ -3,8 +3,13 @@ server:
   address: 0.0.0.0
 
 lavalink:
+  plugins:
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.1"
+      snapshot: false
+
   server:
     password: "youshallnotpass"
+
     sources:
       youtube: false
       bandcamp: true
@@ -14,10 +19,6 @@ lavalink:
       http: true
       local: false
 
-  plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.1"
-      snapshot: false
-
 plugins:
   youtube:
     enabled: true
@@ -25,18 +26,13 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    oauth:
-      enabled: true
-      refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
-
     clients:
       - MUSIC
       - ANDROID_VR
       - WEB
       - WEBEMBEDDED
-      - TV
 
 logging:
   level:
     root: INFO
-    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
+    dev.lavalink.youtube: DEBUG
