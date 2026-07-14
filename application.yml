@@ -8,7 +8,7 @@ lavalink:
       snapshot: false
 
   server:
-    password: "youshallnotpass"
+    password: "${LAVALINK_PASSWORD:youshallnotpass}"
 
     sources:
       youtube: false
@@ -27,12 +27,12 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
-      - MUSIC
       - ANDROID_VR
-      - WEB
-      - WEBEMBEDDED
+      - TVHTML5_SIMPLY
+      - MUSIC
 
 logging:
   level:
     root: INFO
-    dev.lavalink.youtube: DEBUG
+    lavalink: INFO
+    dev.lavalink.youtube: INFO
