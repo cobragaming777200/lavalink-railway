@@ -27,19 +27,16 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
-      - MUSIC
+      - ANDROID_VR
+      - IOS
+      - MWEB
       - WEB
-      - WEBEMBEDDED
-      - TVHTML5_SIMPLY
-      - TV
 
     oauth:
-      enabled: true
-      refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
+      enabled: false
 
 logging:
   level:
     root: INFO
     lavalink: INFO
     dev.lavalink.youtube: INFO
-    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
