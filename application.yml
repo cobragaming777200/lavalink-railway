@@ -52,11 +52,12 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
+      - TVHTML5EMBEDDED
+      - TV
       - MUSIC
-      - ANDROID_VR
       - WEB
       - WEBEMBEDDED
-      - TV
+      - ANDROID_VR
 
     oauth:
       enabled: true
@@ -65,27 +66,3 @@ plugins:
     remoteCipher:
       url: "https://cipher.kikkia.dev/"
       password: ""
-      userAgent: "ZENTRA"
-
-metrics:
-  prometheus:
-    enabled: false
-    endpoint: /metrics
-
-sentry:
-  dsn: ""
-
-logging:
-  level:
-    root: INFO
-    lavalink: INFO
-    dev.lavalink.youtube: INFO
-    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
-
-  request:
-    enabled: true
-    includeClientInfo: true
-    includeHeaders: false
-    includeQueryString: true
-    includePayload: true
-    maxPayloadLength: 10000
