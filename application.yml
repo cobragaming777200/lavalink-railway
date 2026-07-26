@@ -52,11 +52,11 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
-      - TVHTML5EMBEDDED
-      - TV
-      - MUSIC
+      - TVHTML5_SIMPLY
+      - TVHTML5
+      - WEB_REMIX
       - WEB
-      - WEBEMBEDDED
+      - WEB_EMBEDDED_PLAYER
       - ANDROID_VR
 
     oauth:
