@@ -6,6 +6,8 @@ lavalink:
   plugins:
     - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.1"
       snapshot: false
+    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.7.2"
+      repository: "https://maven.lavalink.dev/releases"
 
   server:
     password: "${LAVALINK_PASSWORD:youshallnotpass}"
@@ -66,3 +68,16 @@ plugins:
     remoteCipher:
       url: "https://cipher.kikkia.dev/"
       password: ""
+
+  lavasrc:
+    providers:
+      - "ytsearch:\"%ISRC%\""
+      - "ytsearch:%QUERY%"
+    sources:
+      spotify: true
+      applemusic: false
+      deezer: false
+    spotify:
+      clientId: "${SPOTIFY_CLIENT_ID}"
+      clientSecret: "${SPOTIFY_CLIENT_SECRET}"
+      countryCode: "US"
