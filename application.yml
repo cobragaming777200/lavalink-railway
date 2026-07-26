@@ -55,10 +55,9 @@ plugins:
 
     clients:
       - TVHTML5_SIMPLY
-      - TVHTML5
-      - WEB_REMIX
+      - MUSIC
       - WEB
-      - WEB_EMBEDDED_PLAYER
+      - WEBEMBEDDED
       - ANDROID_VR
 
     oauth:
