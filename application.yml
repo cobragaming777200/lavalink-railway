@@ -6,14 +6,18 @@ lavalink:
   plugins:
     - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.1"
       snapshot: false
-    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.7.2"
+
+    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
       repository: "https://maven.lavalink.dev/releases"
+      snapshot: false
 
   server:
     password: "${LAVALINK_PASSWORD:youshallnotpass}"
 
     sources:
+      # Disabled because the separate youtube-source plugin is used.
       youtube: false
+
       bandcamp: true
       soundcloud: true
       twitch: true
@@ -46,7 +50,17 @@ lavalink:
       connectionRequestTimeoutMs: 10000
       socketTimeoutMs: 10000
 
+
+# ==================================================
+# PLUGIN SETTINGS
+# This "plugins" section must remain at the YAML root.
+# ==================================================
+
 plugins:
+  # ==================================================
+  # YOUTUBE SOURCE
+  # ==================================================
+
   youtube:
     enabled: true
     allowSearch: true
@@ -54,29 +68,81 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
-      - TVHTML5_SIMPLY
       - MUSIC
+      - ANDROID_VR
       - WEB
       - WEBEMBEDDED
-      - ANDROID_VR
+      - TVHTML5_SIMPLY
 
     oauth:
       enabled: true
       refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
 
+    # Optional remote cipher service.
     remoteCipher:
       url: "https://cipher.kikkia.dev/"
       password: ""
+      userAgent: "ZENTRA"
+
+
+  # ==================================================
+  # LAVASRC / SPOTIFY
+  # ==================================================
 
   lavasrc:
+    # Spotify supplies the track information.
+    # YouTube is used to find playable matching audio.
     providers:
       - "ytsearch:\"%ISRC%\""
       - "ytsearch:%QUERY%"
+
     sources:
       spotify: true
       applemusic: false
       deezer: false
+      yandexmusic: false
+      flowerytts: false
+      youtube: false
+      vkmusic: false
+      tidal: false
+      qobuz: false
+      ytdlp: false
+      jiosaavn: false
+
+    lyrics-sources:
+      spotify: false
+      deezer: false
+      youtube: false
+      yandexmusic: false
+      vkmusic: false
+      lrcLib: false
+
     spotify:
       clientId: "${SPOTIFY_CLIENT_ID}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET}"
-      countryCode: "US"
+
+      countryCode: "IN"
+
+      # 6 pages × 100 tracks for playlists.
+      playlistLoadLimit: 6
+
+      # 6 pages × 50 tracks for albums.
+      albumLoadLimit: 6
+
+      resolveArtistsInSearch: true
+      localFiles: false
+      preferPartnerApi: false
+      preferV1SearchApi: false
+
+
+# ==================================================
+# LOGGING
+# ==================================================
+
+logging:
+  level:
+    root: INFO
+    lavalink: INFO
+    dev.lavalink.youtube: INFO
+    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
+    com.github.topi314.lavasrc: INFO
