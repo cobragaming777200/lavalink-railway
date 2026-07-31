@@ -38,7 +38,10 @@ lavalink:
     frameBufferDurationMs: 5000
     opusEncodingQuality: 10
     resamplingQuality: HIGH
-    trackStuckThresholdMs: 10000
+
+    # Increased from 10 seconds so a slow mirror has more time to begin.
+    trackStuckThresholdMs: 30000
+
     useSeekGhosting: true
     playerUpdateInterval: 5
 
@@ -54,13 +57,14 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
+    # Kept exactly in the current working order.
     clients:
-      - TV
-      - TVHTML5_SIMPLY
       - MUSIC
+      - ANDROID_VR
       - WEB
       - WEBEMBEDDED
-      - ANDROID_VR
+      - TVHTML5_SIMPLY
+      - TV
 
     oauth:
       enabled: true
@@ -71,9 +75,12 @@ plugins:
       password: ""
 
   lavasrc:
+    # Spotify metadata is tried against several playable mirror sources.
     providers:
       - "ytsearch:\"%ISRC%\""
+      - "ytmsearch:%QUERY%"
       - "ytsearch:%QUERY%"
+      - "scsearch:%QUERY%"
 
     sources:
       spotify: true
@@ -83,4 +90,4 @@ plugins:
     spotify:
       clientId: "${SPOTIFY_CLIENT_ID}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET}"
-      countryCode: "US"
+      countryCode: "IN"
