@@ -55,6 +55,7 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
+      - TV
       - TVHTML5_SIMPLY
       - MUSIC
       - WEB
@@ -69,10 +70,10 @@ plugins:
       url: "https://cipher.kikkia.dev/"
       password: ""
 
-
   lavasrc:
     providers:
-      - "scsearch:%QUERY%"
+      - "ytsearch:\"%ISRC%\""
+      - "ytsearch:%QUERY%"
 
     sources:
       spotify: true
@@ -83,10 +84,3 @@ plugins:
       clientId: "${SPOTIFY_CLIENT_ID}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET}"
       countryCode: "US"
-
-logging:
-  level:
-    root: INFO
-    lavalink: INFO
-    dev.lavalink.youtube: INFO
-    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
