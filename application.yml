@@ -9,6 +9,7 @@ lavalink:
 
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
       repository: "https://maven.lavalink.dev/releases"
+      snapshot: false
 
   server:
     password: "${LAVALINK_PASSWORD:youshallnotpass}"
@@ -39,16 +40,16 @@ lavalink:
     opusEncodingQuality: 10
     resamplingQuality: HIGH
 
-    # Increased from 10 seconds so a slow mirror has more time to begin.
-    trackStuckThresholdMs: 30000
+    # Avoid treating a short network interruption as a stuck song.
+    trackStuckThresholdMs: 45000
 
     useSeekGhosting: true
     playerUpdateInterval: 5
 
     timeouts:
-      connectTimeoutMs: 10000
-      connectionRequestTimeoutMs: 10000
-      socketTimeoutMs: 10000
+      connectTimeoutMs: 15000
+      connectionRequestTimeoutMs: 15000
+      socketTimeoutMs: 20000
 
 plugins:
   youtube:
@@ -57,14 +58,15 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    # Kept exactly in the current working order.
+    # MUSIC handles YouTube Music search metadata.
+    # TV is placed before the unsigned playback clients so OAuth is tried first.
+    # The failing ANDROID_VR and WEBEMBEDDED clients were removed.
     clients:
       - MUSIC
-      - ANDROID_VR
-      - WEB
-      - WEBEMBEDDED
-      - TVHTML5_SIMPLY
       - TV
+      - TVHTML5_SIMPLY
+      - MWEB
+      - WEB
 
     oauth:
       enabled: true
@@ -73,9 +75,9 @@ plugins:
     remoteCipher:
       url: "https://cipher.kikkia.dev/"
       password: ""
+      userAgent: "ZENTRA-Lavalink"
 
   lavasrc:
-    # Spotify metadata is tried against several playable mirror sources.
     providers:
       - "ytsearch:\"%ISRC%\""
       - "ytmsearch:%QUERY%"
@@ -94,3 +96,7 @@ plugins:
       playlistLoadLimit: 6
       albumLoadLimit: 6
       resolveArtistsInSearch: true
+
+logging:
+  level:
+    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
