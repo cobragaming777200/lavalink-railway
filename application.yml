@@ -40,9 +40,7 @@ lavalink:
     opusEncodingQuality: 10
     resamplingQuality: HIGH
 
-    # Avoid treating a short network interruption as a stuck song.
     trackStuckThresholdMs: 45000
-
     useSeekGhosting: true
     playerUpdateInterval: 5
 
@@ -58,9 +56,6 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    # MUSIC handles YouTube Music search metadata.
-    # TV is placed before the unsigned playback clients so OAuth is tried first.
-    # The failing ANDROID_VR and WEBEMBEDDED clients were removed.
     clients:
       - MUSIC
       - TV
@@ -94,15 +89,14 @@ plugins:
       clientSecret: "${SPOTIFY_CLIENT_SECRET}"
       countryCode: "IN"
 
-      # 6 pages x 100 tracks = up to 600 tracks from a Spotify playlist.
       playlistLoadLimit: 6
       albumLoadLimit: 6
       resolveArtistsInSearch: true
-
-      # Public Spotify playlist support through the Web API.
       localFiles: false
-      preferPartnerApi: false
+
+      preferPartnerApi: true
       preferV1SearchApi: false
+      customTokenEndpoint: "https://spotify-tokener-production-072b.up.railway.app/api/token"
 
 logging:
   level:
