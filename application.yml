@@ -93,9 +93,16 @@ plugins:
       clientId: "${SPOTIFY_CLIENT_ID}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET}"
       countryCode: "IN"
+
+      # 6 pages x 100 tracks = up to 600 tracks from a Spotify playlist.
       playlistLoadLimit: 6
       albumLoadLimit: 6
       resolveArtistsInSearch: true
+
+      # Public Spotify playlist support through the Web API.
+      localFiles: false
+      preferPartnerApi: false
+      preferV1SearchApi: false
 
 logging:
   level:
