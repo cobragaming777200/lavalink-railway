@@ -35,23 +35,27 @@ lavalink:
       channelMix: true
       lowPass: true
 
-    bufferDurationMs: 400
-    frameBufferDurationMs: 5000
+    # Increased slightly for more playback stability
+    bufferDurationMs: 1000
+    frameBufferDurationMs: 10000
+
     opusEncodingQuality: 10
     resamplingQuality: HIGH
 
-    trackStuckThresholdMs: 45000
+    trackStuckThresholdMs: 60000
     useSeekGhosting: true
     playerUpdateInterval: 5
 
     timeouts:
       connectTimeoutMs: 15000
       connectionRequestTimeoutMs: 15000
-      socketTimeoutMs: 20000
+      socketTimeoutMs: 30000
+
 
 plugins:
   youtube:
     enabled: true
+
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
@@ -72,6 +76,7 @@ plugins:
       password: ""
       userAgent: "ZENTRA-Lavalink"
 
+
   lavasrc:
     providers:
       - "ytsearch:\"%ISRC%\""
@@ -91,12 +96,15 @@ plugins:
 
       playlistLoadLimit: 6
       albumLoadLimit: 6
+
       resolveArtistsInSearch: true
       localFiles: false
 
       preferPartnerApi: true
       preferV1SearchApi: false
+
       customTokenEndpoint: "https://spotify-tokener-production-072b.up.railway.app/api/token"
+
 
 logging:
   level:
