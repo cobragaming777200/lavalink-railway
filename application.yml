@@ -96,8 +96,7 @@ plugins:
 
       preferPartnerApi: true
       preferV1SearchApi: false
-      customTokenEndpoint: "https://spotify-tokener-production-072b.up.railway.app/api/token"
-
+      customTokenEndpoint: "https://spotify-tokener-production-c714.up.railway.app/api/token"
 logging:
   level:
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
