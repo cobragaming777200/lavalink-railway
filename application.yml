@@ -57,11 +57,13 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
-      - MUSIC
-      - TV
-      - TVHTML5_SIMPLY
+      - ANDROID_VR
+      - ANDROID_MUSIC
+      - IOS
       - MWEB
       - WEB
+      - WEBEMBEDDED
+      - TVHTML5_SIMPLY
 
     oauth:
       enabled: true
@@ -97,6 +99,7 @@ plugins:
       preferPartnerApi: true
       preferV1SearchApi: false
       customTokenEndpoint: "https://spotify-tokener-production-c7f4.up.railway.app/api/token"
+
 logging:
   level:
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
