@@ -66,10 +66,9 @@ plugins:
       - WEBEMBEDDED
       - TVHTML5_SIMPLY
 
-    # TEMPORARY OAUTH CONFIG
-    # Do not put refreshToken here yet.
     oauth:
       enabled: true
+      refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
 
   lavasrc:
     providers:
