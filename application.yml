@@ -65,10 +65,10 @@ plugins:
       - WEBEMBEDDED
       - TVHTML5_SIMPLY
 
+    # FIRST-TIME OAUTH TOKEN GENERATION
+    # Do NOT add refreshToken yet.
     oauth:
-  enabled: true
-
-    # Removed remoteCipher to prevent potential failures
+      enabled: true
 
   lavasrc:
     providers:
