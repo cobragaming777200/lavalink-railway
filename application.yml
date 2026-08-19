@@ -66,8 +66,7 @@ plugins:
       - TVHTML5_SIMPLY
 
     oauth:
-      enabled: true
-      refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
+  enabled: true
 
     # Removed remoteCipher to prevent potential failures
 
