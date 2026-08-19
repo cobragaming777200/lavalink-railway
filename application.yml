@@ -49,9 +49,7 @@ lavalink:
       connectionRequestTimeoutMs: 15000
       socketTimeoutMs: 20000
 
-
 plugins:
-
   youtube:
     enabled: true
 
@@ -65,18 +63,13 @@ plugins:
       - WEB
       - MWEB
       - WEBEMBEDDED
-      - TV
       - TVHTML5_SIMPLY
 
     oauth:
       enabled: true
       refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
 
-    remoteCipher:
-      url: "https://cipher.kikkia.dev/"
-      password: ""
-      userAgent: "ZENTRA-Lavalink"
-
+    # Removed remoteCipher to prevent potential failures
 
   lavasrc:
     providers:
@@ -104,7 +97,6 @@ plugins:
       preferV1SearchApi: false
 
       customTokenEndpoint: "https://spotify-tokener-production-c7f4.up.railway.app/api/token"
-
 
 logging:
   level:
