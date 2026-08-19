@@ -49,6 +49,7 @@ lavalink:
       connectionRequestTimeoutMs: 15000
       socketTimeoutMs: 20000
 
+
 plugins:
   youtube:
     enabled: true
@@ -69,6 +70,12 @@ plugins:
     oauth:
       enabled: true
       refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
+
+    # Fixes YouTube "Must find sig function" cipher errors
+    remoteCipher:
+      url: "https://cipher.kikkia.dev/"
+      userAgent: "ZENTRA"
+
 
   lavasrc:
     providers:
@@ -97,6 +104,8 @@ plugins:
 
       customTokenEndpoint: "https://spotify-tokener-production-c7f4.up.railway.app/api/token"
 
+
 logging:
   level:
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
+    dev.lavalink.youtube.cipher: INFO
