@@ -58,6 +58,7 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
+      - TV
       - ANDROID_VR
       - ANDROID_MUSIC
       - WEB
@@ -65,10 +66,9 @@ plugins:
       - WEBEMBEDDED
       - TVHTML5_SIMPLY
 
-    # FIRST-TIME OAUTH TOKEN GENERATION
-    # Do NOT add refreshToken yet.
     oauth:
       enabled: true
+      refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
 
   lavasrc:
     providers:
