@@ -37,8 +37,10 @@ lavalink:
 
     bufferDurationMs: 400
     frameBufferDurationMs: 5000
-    opusEncodingQuality: 10
-    resamplingQuality: HIGH
+
+    # Lower CPU use on Railway
+    opusEncodingQuality: 5
+    resamplingQuality: LOW
 
     trackStuckThresholdMs: 45000
     useSeekGhosting: true
@@ -59,9 +61,10 @@ plugins:
     clients:
       - MUSIC
       - TV
-      - TVHTML5_SIMPLY
-      - MWEB
       - WEB
+      - MWEB
+      - TVHTML5_SIMPLY
+      - WEBEMBEDDED
 
     oauth:
       enabled: true
@@ -100,4 +103,6 @@ plugins:
 
 logging:
   level:
+    root: INFO
+    lavalink: INFO
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
