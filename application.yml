@@ -4,9 +4,11 @@ server:
 
 lavalink:
   plugins:
+    # YouTube Source
     - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
       snapshot: false
 
+    # Spotify / LavaSrc
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
       repository: "https://maven.lavalink.dev/releases"
       snapshot: false
@@ -14,8 +16,15 @@ lavalink:
   server:
     password: "${LAVALINK_PASSWORD:youshallnotpass}"
 
+    # ==================================================
+    # SOURCES
+    # ==================================================
     sources:
+      # IMPORTANT:
+      # Disable Lavalink built-in YouTube.
+      # youtube-plugin handles YouTube instead.
       youtube: false
+
       bandcamp: true
       soundcloud: true
       twitch: true
@@ -23,6 +32,9 @@ lavalink:
       http: true
       local: false
 
+    # ==================================================
+    # FILTERS
+    # ==================================================
     filters:
       volume: true
       equalizer: true
@@ -35,25 +47,38 @@ lavalink:
       channelMix: true
       lowPass: true
 
-    # Playback buffering
+    # ==================================================
+    # PLAYBACK
+    # ==================================================
+
+    # Audio buffering
     bufferDurationMs: 400
     frameBufferDurationMs: 5000
 
-    # Keep Railway CPU usage lower
+    # Lower Railway CPU / memory usage
     opusEncodingQuality: 5
     resamplingQuality: LOW
 
-    # Don't mark a track as stuck too quickly
+    # Give a track enough time before declaring it stuck
     trackStuckThresholdMs: 45000
 
     useSeekGhosting: true
+
+    # Player update interval in seconds
     playerUpdateInterval: 5
 
+    # ==================================================
+    # NETWORK TIMEOUTS
+    # ==================================================
     timeouts:
       connectTimeoutMs: 15000
       connectionRequestTimeoutMs: 15000
       socketTimeoutMs: 20000
 
+
+# ==================================================
+# PLUGINS
+# ==================================================
 plugins:
 
   # ==================================================
@@ -66,22 +91,34 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    # Order matters.
-    # MUSIC = YouTube Music search
-    # TV = OAuth playback
-    # ANDROID_VR / WEB / WEBEMBEDDED = playback fallbacks
+    # ------------------------------------------------
+    # YOUTUBE CLIENTS
+    # ------------------------------------------------
+    #
+    # MUSIC:
+    # Used mainly for YouTube Music/search.
+    #
+    # TV:
+    # OAuth-compatible playback client.
+    #
+    # Keeping this list small prevents Lavalink from
+    # falling through multiple blocked Railway clients.
+    #
     clients:
       - MUSIC
       - TV
-      - ANDROID_VR
-      - WEB
-      - WEBEMBEDDED
 
+    # ------------------------------------------------
+    # YOUTUBE OAUTH
+    # ------------------------------------------------
     oauth:
       enabled: true
       refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
       skipInitialization: true
 
+    # ------------------------------------------------
+    # REMOTE CIPHER
+    # ------------------------------------------------
     remoteCipher:
       url: "https://cipher.kikkia.dev/"
       password: ""
@@ -89,10 +126,12 @@ plugins:
 
 
   # ==================================================
-  # LAVASRC / SPOTIFY
+  # LAVASRC
   # ==================================================
   lavasrc:
 
+    # When Spotify returns track metadata,
+    # LavaSrc tries these providers for actual audio.
     providers:
       - "ytsearch:\"%ISRC%\""
       - "ytmsearch:%QUERY%"
@@ -104,6 +143,9 @@ plugins:
       applemusic: false
       deezer: false
 
+    # ==================================================
+    # SPOTIFY
+    # ==================================================
     spotify:
       clientId: "${SPOTIFY_CLIENT_ID}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET}"
@@ -129,5 +171,6 @@ logging:
   level:
     root: INFO
     lavalink: INFO
+
     dev.lavalink.youtube: INFO
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
