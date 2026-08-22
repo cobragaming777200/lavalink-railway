@@ -1,11 +1,3 @@
-FROM eclipse-temurin:21-jre
+FROM ghcr.io/lavalink-devs/lavalink:4.2.2
 
-WORKDIR /app
-
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
-
-RUN curl -L -o Lavalink.jar https://github.com/lavalink-devs/Lavalink/releases/latest/download/Lavalink.jar
-
-COPY application.yml /app/application.yml
-
-CMD ["java", "-jar", "Lavalink.jar"]
+COPY application.yml /opt/Lavalink/application.yml
