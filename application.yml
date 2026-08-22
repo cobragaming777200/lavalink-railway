@@ -38,7 +38,6 @@ lavalink:
     bufferDurationMs: 400
     frameBufferDurationMs: 5000
 
-    # Lower CPU use on Railway
     opusEncodingQuality: 5
     resamplingQuality: LOW
 
@@ -62,13 +61,11 @@ plugins:
       - MUSIC
       - TV
       - WEB
-      - MWEB
-      - TVHTML5_SIMPLY
-      - WEBEMBEDDED
 
     oauth:
       enabled: true
       refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
+      skipInitialization: true
 
     remoteCipher:
       url: "https://cipher.kikkia.dev/"
