@@ -35,13 +35,17 @@ lavalink:
       channelMix: true
       lowPass: true
 
+    # Playback buffering
     bufferDurationMs: 400
     frameBufferDurationMs: 5000
 
+    # Keep Railway CPU usage lower
     opusEncodingQuality: 5
     resamplingQuality: LOW
 
+    # Don't mark a track as stuck too quickly
     trackStuckThresholdMs: 45000
+
     useSeekGhosting: true
     playerUpdateInterval: 5
 
@@ -51,16 +55,27 @@ lavalink:
       socketTimeoutMs: 20000
 
 plugins:
+
+  # ==================================================
+  # YOUTUBE
+  # ==================================================
   youtube:
     enabled: true
+
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
+    # Order matters.
+    # MUSIC = YouTube Music search
+    # TV = OAuth playback
+    # ANDROID_VR / WEB / WEBEMBEDDED = playback fallbacks
     clients:
       - MUSIC
       - TV
+      - ANDROID_VR
       - WEB
+      - WEBEMBEDDED
 
     oauth:
       enabled: true
@@ -72,7 +87,12 @@ plugins:
       password: ""
       userAgent: "ZENTRA-Lavalink"
 
+
+  # ==================================================
+  # LAVASRC / SPOTIFY
+  # ==================================================
   lavasrc:
+
     providers:
       - "ytsearch:\"%ISRC%\""
       - "ytmsearch:%QUERY%"
@@ -87,19 +107,27 @@ plugins:
     spotify:
       clientId: "${SPOTIFY_CLIENT_ID}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET}"
+
       countryCode: "IN"
 
       playlistLoadLimit: 6
       albumLoadLimit: 6
+
       resolveArtistsInSearch: true
       localFiles: false
 
       preferPartnerApi: true
       preferV1SearchApi: false
+
       customTokenEndpoint: "https://spotify-tokener-production-072b.up.railway.app/api/token"
 
+
+# ==================================================
+# LOGGING
+# ==================================================
 logging:
   level:
     root: INFO
     lavalink: INFO
+    dev.lavalink.youtube: INFO
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
