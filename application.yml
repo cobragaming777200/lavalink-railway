@@ -4,8 +4,8 @@ server:
 
 lavalink:
   plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:f45bbb7aebfcbc1c553769e04af6cd43afa8b7c3"
-      snapshot: true
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
+      snapshot: false
 
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
       repository: "https://maven.lavalink.dev/releases"
@@ -40,14 +40,14 @@ lavalink:
     opusEncodingQuality: 10
     resamplingQuality: HIGH
 
-    trackStuckThresholdMs: 30000
+    trackStuckThresholdMs: 45000
     useSeekGhosting: true
     playerUpdateInterval: 5
 
     timeouts:
-      connectTimeoutMs: 10000
-      connectionRequestTimeoutMs: 10000
-      socketTimeoutMs: 10000
+      connectTimeoutMs: 15000
+      connectionRequestTimeoutMs: 15000
+      socketTimeoutMs: 20000
 
 plugins:
   youtube:
@@ -57,10 +57,13 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
-      - MUSIC
+      - ANDROID_VR
+      - ANDROID_MUSIC
       - IOS
+      - MWEB
       - WEB
-      - TV
+      - WEBEMBEDDED
+      - TVHTML5_SIMPLY
 
     oauth:
       enabled: true
@@ -69,6 +72,7 @@ plugins:
     remoteCipher:
       url: "https://cipher.kikkia.dev/"
       password: ""
+      userAgent: "ZENTRA-Lavalink"
 
   lavasrc:
     providers:
@@ -85,26 +89,17 @@ plugins:
     spotify:
       clientId: "${SPOTIFY_CLIENT_ID}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET}"
-
       countryCode: "IN"
 
       playlistLoadLimit: 6
       albumLoadLimit: 6
-
       resolveArtistsInSearch: true
       localFiles: false
 
-      preferPartnerApi: false
+      preferPartnerApi: true
       preferV1SearchApi: false
-
-metrics:
-  prometheus:
-    enabled: false
+      customTokenEndpoint: "https://spotify-tokener-production-c7f4.up.railway.app/api/token"
 
 logging:
   level:
-    root: INFO
-    lavalink: INFO
-    dev.lavalink.youtube: INFO
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
-    com.github.topi314.lavasrc: INFO
