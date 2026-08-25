@@ -4,8 +4,8 @@ server:
 
 lavalink:
   plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
-      snapshot: false
+    - dependency: "dev.lavalink.youtube:youtube-plugin:f45bbb7aebfcbc1c553769e04af6cd43afa8b7c3"
+      snapshot: true
 
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
       repository: "https://maven.lavalink.dev/releases"
@@ -40,14 +40,14 @@ lavalink:
     opusEncodingQuality: 10
     resamplingQuality: HIGH
 
-    trackStuckThresholdMs: 45000
+    trackStuckThresholdMs: 30000
     useSeekGhosting: true
     playerUpdateInterval: 5
 
     timeouts:
-      connectTimeoutMs: 15000
-      connectionRequestTimeoutMs: 15000
-      socketTimeoutMs: 20000
+      connectTimeoutMs: 10000
+      connectionRequestTimeoutMs: 10000
+      socketTimeoutMs: 10000
 
 plugins:
   youtube:
@@ -57,13 +57,10 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
-      - ANDROID_VR
-      - ANDROID_MUSIC
+      - MUSIC
       - IOS
-      - MWEB
       - WEB
-      - WEBEMBEDDED
-      - TVHTML5_SIMPLY
+      - TV
 
     oauth:
       enabled: true
@@ -93,13 +90,23 @@ plugins:
 
       playlistLoadLimit: 6
       albumLoadLimit: 6
+
       resolveArtistsInSearch: true
       localFiles: false
 
       preferPartnerApi: true
       preferV1SearchApi: false
-      customTokenEndpoint: "https://spotify-tokener-production-c7f4.up.railway.app/api/token"
+
+      customTokenEndpoint: "${SPOTIFY_TOKEN_ENDPOINT}"
+
+metrics:
+  prometheus:
+    enabled: false
 
 logging:
   level:
+    root: INFO
+    lavalink: INFO
+    dev.lavalink.youtube: INFO
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
+    com.github.topi314.lavasrc: INFO
