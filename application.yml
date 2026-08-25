@@ -69,7 +69,6 @@ plugins:
     remoteCipher:
       url: "https://cipher.kikkia.dev/"
       password: ""
-      userAgent: "ZENTRA-Lavalink"
 
   lavasrc:
     providers:
@@ -96,7 +95,6 @@ plugins:
 
       preferPartnerApi: true
       preferV1SearchApi: false
-
       customTokenEndpoint: "${SPOTIFY_TOKEN_ENDPOINT}"
 
 metrics:
