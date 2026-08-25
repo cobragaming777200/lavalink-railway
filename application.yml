@@ -92,7 +92,6 @@ plugins:
       albumLoadLimit: 6
 
       resolveArtistsInSearch: true
-
       localFiles: false
 
       preferPartnerApi: false
