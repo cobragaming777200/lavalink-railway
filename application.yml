@@ -4,11 +4,9 @@ server:
 
 lavalink:
   plugins:
-    # YouTube Source
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
-      snapshot: false
+    - dependency: "dev.lavalink.youtube:youtube-plugin:f45bbb7aebfcbc1c553769e04af6cd43afa8b7c3"
+      snapshot: true
 
-    # Spotify / LavaSrc
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
       repository: "https://maven.lavalink.dev/releases"
       snapshot: false
@@ -16,15 +14,8 @@ lavalink:
   server:
     password: "${LAVALINK_PASSWORD:youshallnotpass}"
 
-    # ==================================================
-    # SOURCES
-    # ==================================================
     sources:
-      # IMPORTANT:
-      # Disable Lavalink built-in YouTube.
-      # youtube-plugin handles YouTube instead.
       youtube: false
-
       bandcamp: true
       soundcloud: true
       twitch: true
@@ -32,9 +23,6 @@ lavalink:
       http: true
       local: false
 
-    # ==================================================
-    # FILTERS
-    # ==================================================
     filters:
       volume: true
       equalizer: true
@@ -47,91 +35,42 @@ lavalink:
       channelMix: true
       lowPass: true
 
-    # ==================================================
-    # PLAYBACK
-    # ==================================================
-
-    # Audio buffering
     bufferDurationMs: 400
     frameBufferDurationMs: 5000
+    opusEncodingQuality: 10
+    resamplingQuality: HIGH
 
-    # Lower Railway CPU / memory usage
-    opusEncodingQuality: 5
-    resamplingQuality: LOW
-
-    # Give a track enough time before declaring it stuck
-    trackStuckThresholdMs: 45000
-
+    trackStuckThresholdMs: 30000
     useSeekGhosting: true
-
-    # Player update interval in seconds
     playerUpdateInterval: 5
 
-    # ==================================================
-    # NETWORK TIMEOUTS
-    # ==================================================
     timeouts:
-      connectTimeoutMs: 15000
-      connectionRequestTimeoutMs: 15000
-      socketTimeoutMs: 20000
+      connectTimeoutMs: 10000
+      connectionRequestTimeoutMs: 10000
+      socketTimeoutMs: 10000
 
-
-# ==================================================
-# PLUGINS
-# ==================================================
 plugins:
-
-  # ==================================================
-  # YOUTUBE
-  # ==================================================
   youtube:
     enabled: true
-
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    # ------------------------------------------------
-    # YOUTUBE CLIENTS
-    # ------------------------------------------------
-    #
-    # MUSIC:
-    # Used mainly for YouTube Music/search.
-    #
-    # TV:
-    # OAuth-compatible playback client.
-    #
-    # Keeping this list small prevents Lavalink from
-    # falling through multiple blocked Railway clients.
-    #
     clients:
       - MUSIC
+      - IOS
+      - WEB
       - TV
 
-    # ------------------------------------------------
-    # YOUTUBE OAUTH
-    # ------------------------------------------------
     oauth:
       enabled: true
       refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
-      skipInitialization: true
 
-    # ------------------------------------------------
-    # REMOTE CIPHER
-    # ------------------------------------------------
     remoteCipher:
       url: "https://cipher.kikkia.dev/"
       password: ""
-      userAgent: "ZENTRA-Lavalink"
 
-
-  # ==================================================
-  # LAVASRC
-  # ==================================================
   lavasrc:
-
-    # When Spotify returns track metadata,
-    # LavaSrc tries these providers for actual audio.
     providers:
       - "ytsearch:\"%ISRC%\""
       - "ytmsearch:%QUERY%"
@@ -143,34 +82,21 @@ plugins:
       applemusic: false
       deezer: false
 
-    # ==================================================
-    # SPOTIFY
-    # ==================================================
     spotify:
       clientId: "${SPOTIFY_CLIENT_ID}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET}"
-
       countryCode: "IN"
-
       playlistLoadLimit: 6
       albumLoadLimit: 6
-
       resolveArtistsInSearch: true
-      localFiles: false
 
-      preferPartnerApi: true
-      preferV1SearchApi: false
+metrics:
+  prometheus:
+    enabled: false
 
-      customTokenEndpoint: "https://spotify-tokener-production-072b.up.railway.app/api/token"
-
-
-# ==================================================
-# LOGGING
-# ==================================================
 logging:
   level:
     root: INFO
     lavalink: INFO
-
     dev.lavalink.youtube: INFO
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
