@@ -58,8 +58,8 @@ plugins:
 
     clients:
       - MUSIC
-      - IOS
       - WEB
+      - WEBEMBEDDED
       - TV
 
     oauth:
@@ -104,7 +104,6 @@ logging:
   level:
     root: INFO
     lavalink: INFO
-    dev.lavalink.youtube: DEBUG
-    dev.lavalink.youtube.http: DEBUG
-    dev.lavalink.youtube.http.YoutubeOauth2Handler: DEBUG
+    dev.lavalink.youtube: INFO
+    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
     com.github.topi314.lavasrc: INFO
