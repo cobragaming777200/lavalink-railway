@@ -58,9 +58,6 @@ plugins:
 
     clients:
       - MUSIC
-      - ANDROID_VR
-      - ANDROID_MUSIC
-      - MWEB
       - WEB
       - WEBEMBEDDED
       - TV
